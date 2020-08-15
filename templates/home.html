@@ -1,8 +1,7 @@
 {% extends 'main.html' %}
-
-
+{% load static %}
 {% block content %}
-<h5>Hi select the country where you like will see information about Covid-19</h3>
+<h5>There all countries covid-19 cases</h3>
     <!-- <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Dropdown button
@@ -14,9 +13,9 @@
         
         </div>
     </div> -->
-
+    <div class="card">
     <table class="table">
-        <thead>
+        <thead class="head-style">
           <tr>
             <th scope="col">#</th>
             <th scope="col">Country</th>
@@ -26,13 +25,14 @@
             <th scope="col">Recovered</th>
             <th scope="col">Latitude</th>
             <th scope="col">Longitude</th>
-            <th scope="col">Last_update</th>
+            <th scope="col">Last update</th>
           </tr>
         </thead>
+            
         <tbody>
             {% for country in countries %}
-            <tr>
-                
+            <tr  class=tr-style>
+               
             <th scope="row">{{forloop.counter}}</th>
             <td>{{country.country}}</td>
             <td>{{country.confirmed}}</td>
@@ -48,10 +48,58 @@
         </tbody>
       </table>
 
+      <div class="text-xs-center">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          {% if countries.has_previous%}
+            <li class="page-item"><a class="page-link" href="?page={{ countries.previous_page_number }}">Previous</a></li>
+          {% endif %}
+
+          {% for i in countries.paginator.page_range %}
+              {% if countries.number == i %}
+                <li class="page-item active" aria-current="page">
+                  <span class="page-link">
+                  {{i}}
+                  <span class="sr-only">(current)</span>
+                  </span>
+                </li>
+              {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{i}} 
+                  <span class="sr-only">(current)</span> </a></li>
+              {% endif %}
+          {% endfor %}
+          {% if countries.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ countries.next_page_number }}">Next</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+      </div>
+      </div>
+
       <br>
-      {% for country in top_ten %}
-        <p>{{country.country}}</p>
-      {% endfor %}
+      <br>
+      <br>
 
+      
+      
 
+      <style>
+        .pagination {
+          margin-left: 18em;
+          margin-right: 18em;
+        }
+        .head-style {
+          background-color: orange;
+        }
+        .tr-style {
+          background-color: #DCD3FF;
+        }
+        .card {
+          background-color: orange
+        }
+        .page-link {
+          color: black;
+        }
+      </style>
+      
 {% endblock content %}
