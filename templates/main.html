@@ -13,8 +13,8 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-	  <a class="navbar-brand" href="#">Covid-19</a>
+	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: black;">
+	  <a class="navbar-brand" style="color: white;" href="#">Covid-19</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
@@ -22,31 +22,56 @@
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	    <ul class="navbar-nav mr-auto">
 	      <li class="nav-item active">
-	        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+	        <a class="nav-link" style="color: white;" href="#">Home <span class="sr-only">(current)</span></a>
 	      </li>
 
 	      <li class="nav-item active">
-	        <a class="nav-link" href="#">News</a>
-	      </li>
+	        <a class="nav-link"  style="color: white;" href="#">News</a>
+		  </li>
+		  {% if user.is_authenticated %}
+		  <li class="nav-item active">
+	        <a class="nav-link"  style="color: white;" href="#">Hi, {{user.username}}</a>
+		  </li>
+		  {% endif %}	
         </ul>
-        
-        <div class="from-inline-my-2-lg-0">
-            <a href="#" class="btn btn-success">Login</a>
+		
+		
+		<div class="from-inline-my-2-lg-0">
+			{% if user.is_authenticated %}
+				<a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+			{% else %}
+				<a href="{% url 'signup' %}" class="btn btn-warning">SignUp</a>
+				<a href="{% url 'login' %}" class="btn btn-success">Login</a>
+			{% endif %}	
+		</div>
+		
 
-
-        </div>
-	  </div>
 	</nav>
+
+	<style>
+		.navbar-custom {
+			background-color: black;
+		}
+		.name {
+			color: white;
+			padding-top: 1em;
+			margin-right: 1em;
+		}
+		.system-login {
+			padding-top: 1em;
+		}
+	
+	</style>
 
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-     <div class="container">
+    
             <br>
             {% block content %}
 
 
             {% endblock content %}
-    </div>
+    

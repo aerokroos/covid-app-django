@@ -1,31 +1,27 @@
 {% extends 'main.html' %}
 {% load static %}
+{% load svg %}
+
 {% block content %}
+<div class="row">
+<div class="col">
+<div class="container-table">
 <h5>There all countries covid-19 cases</h3>
-    <!-- <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown button
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        
-            <a class="dropdown-item" href="#home" value="{{country.id}}">{{coutry.name}}</a>
-        
-        
-        </div>
-    </div> -->
-    <div class="card">
+    <div class="card" style="width: 1000px;">
     <table class="table">
         <thead class="head-style">
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">Country</th>
-            <th scope="col">Confirmed</th>
-            <th scope="col">Active</th>
-            <th scope="col">Deaths</th>
-            <th scope="col">Recovered</th>
-            <th scope="col">Latitude</th>
-            <th scope="col">Longitude</th>
-            <th scope="col">Last update</th>
+            <th style="color: white;" scope="col">#</th>
+            <th style="color: white;" scope="col">Country</th>
+            <th style="color: white;" scope="col">Confirmed</th>
+            <th style="color: white;" scope="col">Active</th>
+            <th style="color: white;" scope="col">Deaths</th>
+            <th style="color: white;" scope="col">Recovered</th>
+            <th style="color: white;" scope="col">Latitude</th>
+            <th style="color: white;" scope="col">Longitude</th>
+            <th style="color: white;" scope="col">Last update</th>
+            <th style="color: white;" scope="col">More Info</th>
+            
           </tr>
         </thead>
             
@@ -34,7 +30,7 @@
             <tr  class=tr-style>
                
             <th scope="row">{{forloop.counter}}</th>
-            <td>{{country.country}}</td>
+            <td >{{country.country}}</td>
             <td>{{country.confirmed}}</td>
             <td>{{country.active}}</td>
             <td>{{country.deaths}}</td>
@@ -42,6 +38,7 @@
             <td>{{country.latitude}}</td>
             <td>{{country.longitude}}</td>
             <td>{{country.last_update}}</td>
+            <td><a href="#" class="btn btn-primary">GO!</a></td>
           </tr>
           {% endfor %}
           
@@ -76,30 +73,69 @@
       </div>
       </div>
 
-      <br>
-      <br>
-      <br>
+    
 
-      
-      
+      <br>
+      <h2>Top ten of cases in the world</h2>
+      <div class="top-ten" >{% svg 'top_ten' %}</div>
+    
+    </div>
+  </div>
+  
+  <br>
+  <div class="col">
+    <div class="card" style="width: 30rem;">
+      <div class="card-body">
+        <h5 class="card-title" style="color: white;">Select your country</h5>
+        <p class="card-text" style="color:white;">Then, you will see more info about your country</p>
+        <div class="dropdown">
+        <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Select
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          {% for country in countries %}
+            <a class="dropdown-item" href="#home" value="{{country.id}}">{{coutry.country}}</a>
+          {% endfor %}
+        </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+    
 
       <style>
-        .pagination {
-          margin-left: 18em;
-          margin-right: 18em;
+        * {
+          font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         }
+        .pagination{
+          margin-left: 2.5em;
+        }
+        
         .head-style {
-          background-color: orange;
+          background-color: #336B87;
         }
         .tr-style {
           background-color: #DCD3FF;
         }
         .card {
-          background-color: orange
+          background-color: #336B87
         }
         .page-link {
           color: black;
         }
+        .data-info {
+          font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        .top-ten {
+          width: 1000px;
+          height: 500px;
+        }
+        .container-table {
+          margin-left: 4em;
+        }
+        
       </style>
       
 {% endblock content %}

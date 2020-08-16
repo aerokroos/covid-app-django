@@ -39,6 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # add app
     'coronavirus.apps',
+    # add svg
+    'svg',
+    # users
+    'users.apps.UsersConfig',
+    
+    
 ]
 
 MIDDLEWARE = [
@@ -49,9 +55,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'covid_app.urls'
+
+TIME_ZONE = 'America/Hermosillo'
+
+AUTH_USER_MODEL = 'users.CustomUser' # new
 
 TEMPLATES = [
     {
@@ -115,6 +126,12 @@ USE_L10N = True
 
 USE_TZ = True
 
+SVG_DIRS=[
+    os.path.join(BASE_DIR, 'my-svgs')
+]
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
