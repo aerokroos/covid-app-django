@@ -11,7 +11,7 @@
     <table class="table">
         <thead class="head-style">
           <tr>
-            <th style="color: white;" scope="col">#</th>
+            <!-- <th style="color: white;" scope="col">#</th> -->
             <th style="color: white;" scope="col">Country</th>
             <th style="color: white;" scope="col">Confirmed</th>
             <th style="color: white;" scope="col">Active</th>
@@ -28,8 +28,8 @@
         <tbody>
             {% for country in countries %}
             <tr  class=tr-style>
-               
-            <th scope="row">{{forloop.counter}}</th>
+              
+            <!-- <th scope="row">{{forloop.counter}}</th> -->
             <td >{{country.country}}</td>
             <td>{{country.confirmed}}</td>
             <td>{{country.active}}</td>
@@ -38,7 +38,7 @@
             <td>{{country.latitude}}</td>
             <td>{{country.longitude}}</td>
             <td>{{country.last_update}}</td>
-            <td><a href="#" class="btn btn-primary">GO!</a></td>
+            <td><a href="{% url 'country_view' country.id %}" class="btn btn-primary">GO!</a></td>
           </tr>
           {% endfor %}
           
@@ -72,39 +72,16 @@
       </nav>
       </div>
       </div>
-
     
-
       <br>
-      <h2>Top ten of cases in the world</h2>
-      <div class="top-ten" >{% svg 'top_ten' %}</div>
+      <h2>Top five of cases in the world</h2>
+      <div class="top-ten" >{% svg 'top_five' %}</div>
     
     </div>
   </div>
   
   <br>
-  <div class="col">
-    <div class="card" style="width: 30rem;">
-      <div class="card-body">
-        <h5 class="card-title" style="color: white;">Select your country</h5>
-        <p class="card-text" style="color:white;">Then, you will see more info about your country</p>
-        <div class="dropdown">
-        <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Select
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          {% for country in countries %}
-            <a class="dropdown-item" href="#home" value="{{country.id}}">{{coutry.country}}</a>
-          {% endfor %}
-        </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-    
-
+  
       <style>
         * {
           font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
